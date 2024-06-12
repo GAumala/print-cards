@@ -1,0 +1,27 @@
+.card {
+  position: fixed
+}
+
+.row-0 {
+  top: 32px;
+}
+
+.row-1 {
+  top: 395px;
+}
+
+.row-2 {
+  top: 759px;
+}
+
+.col-0 {
+  left: 25px;
+}
+
+.col-1 {
+  left: 276px;
+}
+
+.col-2 {
+  left: 526px;
+}

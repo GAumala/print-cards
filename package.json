@@ -1,0 +1,28 @@
+{
+  "name": "@GAumala/print-cards",
+  "version": "1.0.0",
+  "description": "Tool for printing card proxies",
+  "type": "module",
+  "module": true,
+  "bin": {
+    "print-cards": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier src/ --write"
+  },
+  "author": "Gabriel Aumala",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "prettier": "^3.3.2"
+  },
+  "dependencies": {
+    "inquirer": "^9.2.23",
+    "inquirer-path": "^1.0.0-beta5",
+    "mustache": "^4.2.0",
+    "puppeteer": "^22.10.1"
+  }
+}
