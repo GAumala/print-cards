@@ -18,10 +18,10 @@ body {
 
 .page-border {
   position: absolute;
-  top: 14.3mm;
+  top: 14.5mm;
   left: 8.9mm;
-  width: 191.4mm;
-  height: 267.5mm;
+  width: 191.2mm;
+  height: 267.4mm;
 
   border-width: 0.5mm;
   border-style: dashed;
@@ -58,7 +58,7 @@ body {
 }
 
 .row-2 {
-  top: 193.4mm;
+  top: 193.2mm;
 }
 
 .col-0 {
@@ -70,5 +70,5 @@ body {
 }
 
 .col-2 {
-  left: 137.1mm;
+  left: 136.9mm;
 }
