@@ -1,27 +1,40 @@
 .card {
-  position: fixed
+  position: fixed;
+  width: 63.5mm;
+  height: 88.9mm;
+}
+
+.page-border {
+  position: fixed;
+  top: 14.5mm;
+  left: 8.9mm;
+  width: 191.2mm;
+  height: 267.5mm;
+
+  border-width: 0.5mm;
+  border-style: dashed;
 }
 
 .row-0 {
-  top: 36px;
+  top: 14.7mm;
 }
 
 .row-1 {
-  top: 387px;
+  top: 104.1mm;
 }
 
 .row-2 {
-  top: 738px;
+  top: 193.5mm;
 }
 
 .col-0 {
-  left: 20px;
+  left: 9.3mm;
 }
 
 .col-1 {
-  left: 273px;
+  left: 72.9mm;
 }
 
 .col-2 {
-  left: 527px;
+  left: 136.7mm;
 }
