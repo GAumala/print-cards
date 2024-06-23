@@ -7,9 +7,15 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="page-border"/>
-    {{#cards}}
-    <img class="card row-{{row}} col-{{col}}" src="{{src}}">
-    {{/cards}}
+    {{#pages}}
+    <div class="page">
+      <div class="page-border"></div>
+      <div class="y-borders"></div>
+      <div class="x-borders"></div>
+      {{#cards}}
+      <img class="card row-{{row}} col-{{col}}" src="{{src}}">
+      {{/cards}}
+    </div>
+    {{/pages}}
   </body>
 </html>

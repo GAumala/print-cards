@@ -16,11 +16,6 @@ inquirer.prompt.registerPrompt("path", PathPrompt);
 const defaultOutputPath = "./my_card_proxies.pdf";
 
 const findInputError = (input) => {
-  const totalCopies = input.reduce((total, item) => total + item.copies, 0);
-  if (totalCopies > 9) {
-    return `You can only print up to 9 copies in a single file (total copies: ${totalCopies})`;
-  }
-
   const invalidPath = input.find((item) => !fs.existsSync(item.path));
   if (invalidPath) {
     return `"${invalidPath} does not exist"`;

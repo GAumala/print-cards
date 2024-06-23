@@ -1,18 +1,52 @@
+body {
+  margin: 0;
+}
+
 .card {
-  position: fixed;
+  position: absolute;
   width: 63.5mm;
   height: 88.9mm;
 }
 
+.page {
+  position: relative;
+  break-inside: avoid-page;
+  width: 210mm;
+  height: 297mm;
+  overflow:hidden;
+}
+
 .page-border {
-  position: fixed;
-  top: 14.5mm;
+  position: absolute;
+  top: 14.3mm;
   left: 8.9mm;
-  width: 191.2mm;
+  width: 191.4mm;
   height: 267.5mm;
 
   border-width: 0.5mm;
   border-style: dashed;
+}
+
+.y-borders {
+  position: absolute;
+  top: 14.5mm;
+  left: 72.65mm;
+  width: 63.5mm;
+  height: 267.5mm;
+
+  border-left: 0.5mm dashed;
+  border-right: 0.5mm dashed;
+}
+
+.x-borders {
+  position: absolute;
+  top: 103.7mm;
+  left: 8.9mm;
+  width: 191.4mm;
+  height: 88.8mm;
+
+  border-top: 0.5mm dashed;
+  border-bottom: 0.5mm dashed;
 }
 
 .row-0 {
@@ -24,7 +58,7 @@
 }
 
 .row-2 {
-  top: 193.5mm;
+  top: 193.4mm;
 }
 
 .col-0 {
@@ -32,9 +66,9 @@
 }
 
 .col-1 {
-  left: 72.9mm;
+  left: 73.1mm;
 }
 
 .col-2 {
-  left: 136.7mm;
+  left: 137.1mm;
 }
