@@ -4,6 +4,7 @@
   "description": "Tool for printing card proxies",
   "type": "module",
   "module": true,
+  "main": "src/index.js",
   "bin": {
     "print-cards": "./src/cli.js"
   },
