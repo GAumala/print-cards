@@ -8,12 +8,13 @@ import { PathPrompt } from "inquirer-path";
 import chalk from "chalk";
 
 import { catchInputErrorsAndQuit } from "./InputError.js";
-import { print } from "./index.js";
+import * as lib from "./index.js";
 import { version } from "./packageJson.js";
 
 inquirer.prompt.registerPrompt("path", PathPrompt);
 
 const defaultOutputPath = "./my_card_proxies.pdf";
+const PAGE_SIZE_A4 = "210x297";
 
 const findInputError = (input) => {
   const invalidPath = input.find((item) => !fs.existsSync(item.path));
@@ -75,9 +76,12 @@ console.log(chalk.bold(`Proxy Card Printer v${version}`));
 promptImageInput()
   .then(validateImageInput)
   .then((images) =>
-    promptOutputPathInput().then((outputPath) => print({ images, outputPath })),
+    promptOutputPathInput().then((outputPath) =>
+      lib.print({ images, pageSize: PAGE_SIZE_A4, outputPath })
+    ),
   )
   .catch(catchInputErrorsAndQuit)
+  .finally(lib.close)
   .then(({ outputPath }) =>
     console.log(
       "\nYour proxy cards have been printed at:",

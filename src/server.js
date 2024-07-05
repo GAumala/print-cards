@@ -5,12 +5,14 @@ import { fileURLToPath } from "node:url";
 
 import Mustache from "mustache";
 
-import { generateCardDocument } from "./card.js";
+import { generateCardDocument } from "./document.js";
+
+const DEFAULT_PORT = 56748;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const STATIC_DIR = path.join(__dirname, "../static");
 
-const stylesheet = fs.readFileSync(STATIC_DIR + "/style.css", {
+const styleTemplate = fs.readFileSync(STATIC_DIR + "/style.css", {
   encoding: "utf8",
 });
 const indexTemplate = fs.readFileSync(STATIC_DIR + "/index.html", {
@@ -62,7 +64,14 @@ const serveBinaryFile = (res, { contentPath, contentType }) => {
 const requestHandler = (doc) => (req, res) => {
   const reqPath = req.url;
   if (reqPath === "/style.css") {
-    serveTextFile(res, { contentType: "text/css", content: stylesheet });
+    const css = Mustache.render(styleTemplate, doc.sizes);
+    serveTextFile(res, { contentType: "text/css", content: css });
+  } else if (reqPath === "/checked_tiles.png") {
+    const imgPath = STATIC_DIR + reqPath;
+    serveBinaryFile(res, {
+      contentType: "image/png",
+      contentPath: imgPath,
+    });
   } else if (reqPath === "/") {
     const html = Mustache.render(indexTemplate, doc);
     serveTextFile(res, { contentType: "text/html", content: html });
@@ -85,8 +94,9 @@ const requestHandler = (doc) => (req, res) => {
   }
 };
 
-export const serveCardsPage = (images, port = 56748) => {
-  const doc = generateCardDocument(images);
+export const serveCardsPage = (params) => {
+  const port = params.port || DEFAULT_PORT;
+  const doc = generateCardDocument(params);
   const server = http.createServer(requestHandler(doc));
   new Promise((resolve, reject) => {
     server.listen(port);

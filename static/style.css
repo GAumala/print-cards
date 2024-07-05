@@ -3,72 +3,28 @@ body {
 }
 
 .card {
-  position: absolute;
   width: 63.5mm;
   height: 88.9mm;
+  display: block;
+  float: left;
+  margin-left:0.4mm;
+  margin-top:0.4mm;
+}
+
+.content {
+  display: block;
+  height: {{container.height}};
+  width: {{container.width}};
+  margin-top: {{container.topMargin}};
+  margin-left: {{container.leftMargin}};
+  background-image: url(checked_tiles.png);
+  background-repeat: repeat;
 }
 
 .page {
-  position: relative;
   break-inside: avoid-page;
-  width: 210mm;
-  height: 297mm;
+  width: {{page.width}};
+  height: {{page.height}};
   overflow:hidden;
-}
 
-.page-border {
-  position: absolute;
-  top: 14.5mm;
-  left: 8.9mm;
-  width: 191.2mm;
-  height: 267.4mm;
-
-  border-width: 0.5mm;
-  border-style: dashed;
-}
-
-.y-borders {
-  position: absolute;
-  top: 14.5mm;
-  left: 72.65mm;
-  width: 63.5mm;
-  height: 267.5mm;
-
-  border-left: 0.5mm dashed;
-  border-right: 0.5mm dashed;
-}
-
-.x-borders {
-  position: absolute;
-  top: 103.7mm;
-  left: 8.9mm;
-  width: 191.4mm;
-  height: 88.8mm;
-
-  border-top: 0.5mm dashed;
-  border-bottom: 0.5mm dashed;
-}
-
-.row-0 {
-  top: 14.7mm;
-}
-
-.row-1 {
-  top: 104.1mm;
-}
-
-.row-2 {
-  top: 193.2mm;
-}
-
-.col-0 {
-  left: 9.3mm;
-}
-
-.col-1 {
-  left: 73.1mm;
-}
-
-.col-2 {
-  left: 136.9mm;
 }

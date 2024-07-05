@@ -1,24 +1,44 @@
 import puppeteer from "puppeteer";
 import { serveCardsPage } from "./server.js";
 
-export const print = async ({ images, outputPath }) => {
-  const { serverUrl, closeServer } = serveCardsPage(images);
+const browserPromise = puppeteer.launch();
 
-  const browser = await puppeteer.launch();
+export const close = async () => {
+  const browser = await browserPromise;
+  browser.close();
+};
 
-  try {
-    const page = await browser.newPage();
-
-    await page.goto(serverUrl, { waitUntil: "networkidle0" });
-    await page.emulateMediaType("screen");
-    const res = await page
-      .pdf({
-        path: outputPath,
-        format: "A4",
-      })
-      .finally(closeServer);
-    return { outputPath, pdf: res };
-  } finally {
-    await browser.close();
+const parsePageSize = (pageSize) => {
+  const [x, y] = pageSize.split("x").map((s) => parseInt(s.trim()) * 10);
+  if (x < y) {
+    return { pageWidth: x, pageHeight: y };
   }
+  return { pageWidth: y, pageHeight: x };
+};
+
+export const print = async ({ images, pageSize, outputPath }) => {
+  const { pageWidth, pageHeight } = parsePageSize(pageSize);
+  const { serverUrl, closeServer } = serveCardsPage({
+    images,
+    pageWidth,
+    pageHeight,
+  });
+
+  const browser = await browserPromise;
+
+  const page = await browser.newPage();
+  await page.goto(serverUrl, { waitUntil: "networkidle0" });
+  await page.emulateMediaType("screen");
+
+  const pdfWidth = Math.floor(pageWidth / 10) + 'mm'
+  const pdfHeight = Math.floor(pageHeight / 10) + 'mm'
+  const res = await page
+    .pdf({
+      path: outputPath,
+      width: pdfWidth,
+      height: pdfHeight,
+      printBackground: true,
+    })
+    .finally(closeServer);
+  return { outputPath, pdf: res };
 };
